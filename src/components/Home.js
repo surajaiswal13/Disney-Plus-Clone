@@ -1,10 +1,14 @@
 import styled from "styled-components";
 import ImgSlider from "./ImgSlider";
+import Viewers from './Viewers'
 
 const Home = (props) => {
-    return <Container>
+    return(
+      <Container>
         <ImgSlider />
-    </Container>;
+        <Viewers />
+      </Container>
+    ) 
 };
 
 // Below top is used for solving overlapping navbar and container content
