@@ -1,13 +1,36 @@
+import { useEffect, useState } from "react"
+
+// useParams is going to be usefult o writing to the urls
+import { useParams } from "react-router-dom"
 import styled from "styled-components";
 
+// get access to database from firebase
+import db from "../firebase";
+
 const Detail = (props) => {
+    const { id } = useParams()
+    const [detailData,  setDetailData] = useState({}) 
+
+    useEffect(() => {
+        db.collection("movies").doc(id).get().then((doc) => {
+            if(doc.exists) {
+                setDetailData(doc.data());
+            } else {
+                console.log("No Such Document in FireBase")
+            }
+        }
+        ).catch((error) => {
+            console.log("Error getting Documents;". error);
+        })
+    }, [id]);
+
     return (
         <Container>
             <Background>
-                <img src="" alt="" />
+                <img src={detailData.backgroundImg} alt={detailData.title} />
             </Background>
             <ImageTitle>
-                <img src="" alt="" />
+                <img src={detailData.titleImg} alt={detailData.title} />
             </ImageTitle>
             <ContentMeta>
                 <Controls>
@@ -30,10 +53,10 @@ const Detail = (props) => {
                     </GroupWatch>
                 </Controls>
                 <SubTitle>
-                    SubTitle
+                    {detailData.subTitle}
                 </SubTitle>
                 <Description>
-                    Description
+                    {detailData.description}
                 </Description>
             </ContentMeta>
         </Container>
