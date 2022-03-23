@@ -41,7 +41,6 @@ const Home = (props) => {
             trending = [...trending, {id: doc.id, ...doc.data() }]
             break;
         }
-      });
     });
 
     dispatch(setMovies({
@@ -49,8 +48,9 @@ const Home = (props) => {
       newDisney: newDisney,
       original: originals,
       trending: trending,
-      })
-    );
+        })
+      );
+    });
   }, [userName]);
 
     return(
