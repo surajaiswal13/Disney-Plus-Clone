@@ -20,7 +20,8 @@ const Detail = (props) => {
                         <span>Trailer</span>
                     </Trailer>
                     <AddList>
-
+                        <span />
+                        <span />
                     </AddList>
                 </Controls>
             </ContentMeta>
